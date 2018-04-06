@@ -2,7 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Dashboard from '@/components/Dashboard'
-import Project from '@/components/Project'
+import Task from '@/components/Task'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import firebase from 'firebase'
@@ -17,28 +17,28 @@ let router = new Router({
     },
     {
       path: '/dashboard',
-      name: 'Dashboard',
+      name: 'dashboard',
       component: Dashboard,
       meta: {
         requiresAuth: true
       }
     },
     {
-      path: '/project',
-      name: 'Project',
-      component: Project,
+      path: '/task',
+      name: 'task',
+      component: Task,
       meta: {
         requiresAuth: true
       }
     },
     {
       path: '/login',
-      name: 'Login',
+      name: 'login',
       component: Login
     },
     {
       path: '/sign-up',
-      name: 'SignUp',
+      name: 'signUp',
       component: SignUp
     }
   ]

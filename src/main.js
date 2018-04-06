@@ -8,7 +8,15 @@ import Vuetify from 'vuetify'
 import 'vue-material-design-icons/styles.css'
 import 'vuetify/dist/vuetify.min.css'
 
-Vue.use(Vuetify)
+Vue.use(Vuetify, {
+  theme: {
+    // primary: '#4DB6AC',
+    primary: '#AACC3F',
+    secondary: '#90B61D',
+    accent: '#8c9eff',
+    error: '#b71c1c'
+  }
+})
 
 Vue.config.productionTip = false
 
