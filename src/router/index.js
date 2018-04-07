@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import Dashboard from '@/components/Dashboard'
-import Task from '@/components/Task'
+import Project from '@/components/Project'
+import WetlandForm from '@/components/WetlandForm'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import firebase from 'firebase'
@@ -24,9 +25,17 @@ let router = new Router({
       }
     },
     {
-      path: '/task',
-      name: 'task',
-      component: Task,
+      path: '/project/:id',
+      name: 'project',
+      component: Project,
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
+      path: '/wetland-form/:id',
+      name: 'wetland-form',
+      component: WetlandForm,
       meta: {
         requiresAuth: true
       }

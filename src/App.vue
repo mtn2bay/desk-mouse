@@ -2,11 +2,13 @@
   <div id="app" dark>
     <v-app id="inspire" dark>
       <v-navigation-drawer
+        class="expansion-panel"
         clipped
         fixed
         v-model="drawer"
         app
         v-if="user"
+        width="230"
       >
         <v-list dense>
           <v-list-tile :to="{ path: 'dashboard' }">
@@ -17,17 +19,32 @@
               <v-list-tile-title>Dashboard</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
-          <v-divider class="my-3"></v-divider>
-          <v-list-tile v-for="(project, index) in projectList"
-                       :key="project.key"
-                       :to="{ name: 'task', params: { id: index }}">
-            <v-list-tile-action>
-              <v-icon>insert_drive_file</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>{{ project }}</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
+          <v-divider class="my-2"></v-divider>
+          <v-expansion-panel>
+            <v-expansion-panel-content v-for="(project, index) in projectList"
+                                       :key="project.key">
+              <div slot="header" v-on:click="getForms(index)">
+                <v-icon>folder</v-icon>
+                {{ project }}
+              </div>
+              <v-card>
+                <v-card-text>
+                  <v-list>
+                    <v-list-tile v-for="(form, index) in formList"
+                                 :key="form.key"
+                                 :to="{ name: 'wetland-form', params: { id: index }}">
+                      <v-list-tile-action>
+                        <v-icon>insert_drive_file</v-icon>
+                      </v-list-tile-action>
+                      <v-list-tile-content>
+                        {{ form.name }}
+                      </v-list-tile-content>
+                    </v-list-tile>
+                  </v-list>
+                </v-card-text>
+              </v-card>
+            </v-expansion-panel-content>
+          </v-expansion-panel>
         </v-list>
       </v-navigation-drawer>
       <v-toolbar app fixed clipped-left v-if="user">
@@ -55,6 +72,7 @@ export default {
   data: () => ({
     drawer: true,
     projectList: [],
+    formList: [],
     user: ''
   }),
   mounted () {
@@ -73,10 +91,33 @@ export default {
       urlRef.on('value', (snapshot) => {
         this.projectList = snapshot.val()
       })
+    },
+    getForms (projectId) {
+      let rootRef = firebase.database().ref()
+      let urlRef = rootRef.child('/projects/' + projectId + '/forms/')
+      urlRef.on('value', (snapshot) => {
+        this.formList = snapshot.val() || []
+      })
+      this.$router.push({ name: 'project', params: { id: projectId } })
     }
   }
 }
 </script>
 
-<style>
+<style scoped>
+  .expansion-panel {
+    -webkit-box-shadow: none !important;
+    -moz-box-shadow: none !important;
+    box-shadow: none !important;
+  }
+  .expansion-panel__container {
+    border-top: none !important;
+  }
+  .list__tile__action {
+    min-width: 0;
+    padding-right: 3px;
+  }
+  .card__text {
+    padding: 0 0 0 16px;
+  }
 </style>

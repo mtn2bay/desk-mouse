@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <v-container>
+    <h1>Dashboard</h1>
     <v-layout row align-baseline>
       <v-btn v-on:click="addProject()" color="secondary" flat icon>
         <v-icon dark>add_circle_outline</v-icon>
@@ -13,7 +14,7 @@
                    :key="project.key">
         <v-list-tile-content>
           <v-layout depressed small row align-center justify-center>
-            <v-btn :to="{ name: 'task', params: { id: index }}" flat icon color="blue">
+            <v-btn :to="{ name: 'project', params: { id: index }}" flat icon color="blue">
               <v-icon>chevron_right</v-icon>
             </v-btn>
             {{project}}
@@ -24,7 +25,7 @@
         </v-list-tile-content>
       </v-list-tile>
     </v-list>
-  </div>
+  </v-container>
 </template>
 
 <script>
