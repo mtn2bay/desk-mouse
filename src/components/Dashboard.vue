@@ -14,7 +14,7 @@
                    :key="project.key">
         <v-list-tile-content>
           <v-layout depressed small row align-center justify-center>
-            <v-btn :to="{ name: 'project', params: { id: index }}" flat icon color="blue">
+            <v-btn :to="{ name: 'project', params: { id: index, name: project }}" flat icon color="blue">
               <v-icon>chevron_right</v-icon>
             </v-btn>
             {{project}}

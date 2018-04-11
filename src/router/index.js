@@ -3,7 +3,7 @@ import Router from 'vue-router'
 
 import Dashboard from '@/components/Dashboard'
 import Project from '@/components/Project'
-import WetlandForm from '@/components/WetlandForm'
+import WetlandForm from '@/components/wetland-form/WetlandForm'
 import Login from '@/components/Login'
 import SignUp from '@/components/SignUp'
 import firebase from 'firebase'
@@ -25,7 +25,7 @@ let router = new Router({
       }
     },
     {
-      path: '/project/:id',
+      path: '/project/:name',
       name: 'project',
       component: Project,
       meta: {
@@ -33,7 +33,7 @@ let router = new Router({
       }
     },
     {
-      path: '/wetland-form/:id',
+      path: '/wetland-form/:name',
       name: 'wetland-form',
       component: WetlandForm,
       meta: {

@@ -11,7 +11,7 @@
         width="230"
       >
         <v-list dense>
-          <v-list-tile :to="{ path: 'dashboard' }">
+          <v-list-tile :to="{ name: 'dashboard' }">
             <v-list-tile-action>
               <v-icon>dashboard</v-icon>
             </v-list-tile-action>
@@ -20,10 +20,11 @@
             </v-list-tile-content>
           </v-list-tile>
           <v-divider class="my-2"></v-divider>
+          <!--todo: allow multiples to be expanded at once-->
           <v-expansion-panel>
             <v-expansion-panel-content v-for="(project, index) in projectList"
                                        :key="project.key">
-              <div slot="header" v-on:click="getForms(index)">
+              <div slot="header" v-on:click="getForms(project, index)">
                 <v-icon>folder</v-icon>
                 {{ project }}
               </div>
@@ -32,7 +33,7 @@
                   <v-list>
                     <v-list-tile v-for="(form, index) in formList"
                                  :key="form.key"
-                                 :to="{ name: 'wetland-form', params: { id: index }}">
+                                 :to="{ name: 'wetland-form', params: { id: index, name: form.name }}">
                       <v-list-tile-action>
                         <v-icon>insert_drive_file</v-icon>
                       </v-list-tile-action>
@@ -92,13 +93,13 @@ export default {
         this.projectList = snapshot.val()
       })
     },
-    getForms (projectId) {
+    getForms (projectName, projectId) {
       let rootRef = firebase.database().ref()
       let urlRef = rootRef.child('/projects/' + projectId + '/forms/')
       urlRef.on('value', (snapshot) => {
         this.formList = snapshot.val() || []
       })
-      this.$router.push({ name: 'project', params: { id: projectId } })
+      this.$router.push({ name: 'project', params: { id: projectId, name: projectName } })
     }
   }
 }
