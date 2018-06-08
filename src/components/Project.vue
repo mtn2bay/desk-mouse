@@ -10,7 +10,7 @@
             <v-icon dark>add_circle_outline</v-icon>
           </v-btn>
           <v-flex xs4>
-            <v-text-field type="text" v-model="form.name" placeholder="Enter Form" :hide-details="true" />
+            <v-text-field type="text" v-model="form.name" placeholder="Enter Name" :hide-details="true" />
           </v-flex>
         </v-layout>
         <v-list>
