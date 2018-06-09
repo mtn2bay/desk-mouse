@@ -2,7 +2,7 @@
   <div>
     <v-layout row justify-space-between>
       <h1>{{form.name}}</h1>
-      <v-btn color="primary" v-on:click="updateForm">Update</v-btn>
+      <v-btn outline color="primary" v-on:click="updateForm">Update</v-btn>
     </v-layout>
     <v-tabs grow icons-and-text>
       <v-tab v-for="tab in tabs" :key="tab.name">

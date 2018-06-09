@@ -6,7 +6,7 @@
     <v-layout row>
       <v-layout column class="ma-2">
         <v-layout row align-baseline>
-          <v-btn v-on:click="addForm()" color="green" flat icon>
+          <v-btn v-on:click="addForm()" color="primary" flat icon>
             <v-icon dark>add_circle_outline</v-icon>
           </v-btn>
           <v-flex xs4>
@@ -17,13 +17,13 @@
           <v-list-tile v-for="(form, index) in formList" :key="form.key">
             <v-list-tile-content>
               <v-layout depressed small row align-center justify-center>
-                <v-btn :to="{ name: 'wetland-form', params: { id: index, name: form }}" flat icon color="blue">
+                <v-btn v-on:click="deleteForm(index)" flat icon color="error">
+                  <v-icon>delete</v-icon>
+                </v-btn>
+                <v-btn :to="{ name: 'wetland-form', params: { id: index, name: form }}" flat icon color="secondary">
                   <v-icon>chevron_right</v-icon>
                 </v-btn>
                 {{form.name}}
-                <v-btn v-on:click="deleteForm(index)" flat icon color="deep-orange">
-                  <v-icon>delete</v-icon>
-                </v-btn>
               </v-layout>
             </v-list-tile-content>
           </v-list-tile>
@@ -31,7 +31,7 @@
       </v-layout>
       <v-layout column class="ma-2">
         <v-layout row align-baseline>
-          <v-btn v-on:click="addUser()" color="green" flat icon>
+          <v-btn v-on:click="addUser()" color="primary" flat icon>
             <v-icon dark>add_circle_outline</v-icon>
           </v-btn>
           <v-flex xs4>
@@ -42,7 +42,7 @@
           <v-list-tile v-for="(member, index) in members" :key="member.key">
             <v-list-tile-content>
               <v-layout depressed small row align-center justify-center>
-                <v-btn v-on:click="deleteForm(index)" flat icon color="deep-orange">
+                <v-btn v-on:click="deleteForm(index)" flat icon color="error">
                   <v-icon>delete</v-icon>
                 </v-btn>
                 {{member}}

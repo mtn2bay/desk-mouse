@@ -7,7 +7,7 @@
       <v-expansion-panel-content>
         <div slot="header">{{ vegetation.name }}</div>
 
-        <v-btn @click="activate(index)" color="primary" class="mb-2">Add Species</v-btn>
+        <v-btn outline @click="activate(index)" color="primary" class="mb-2">Add Species</v-btn>
 
         <v-dialog v-model="dialog" max-width="500px">
           <v-card>
@@ -28,8 +28,8 @@
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
-              <v-btn color="blue darken-1" flat @click.native="close">Cancel</v-btn>
-              <v-btn color="blue darken-1" flat @click.native="save">Save</v-btn>
+              <v-btn color="secondary" flat @click.native="close">Cancel</v-btn>
+              <v-btn color="secondary" flat @click.native="save">Save</v-btn>
             </v-card-actions>
           </v-card>
         </v-dialog>
@@ -134,7 +134,7 @@ export default {
     close () {
       this.dialog = false
       setTimeout(() => {
-        this.newSpecies = Object.assign({}, this.defaultItem)
+        this.newSpecies = {}
         this.editedIndex = -1
       }, 300)
     },

@@ -2,7 +2,7 @@
   <v-container>
     <h1>Dashboard</h1>
     <v-layout row align-baseline>
-      <v-btn v-on:click="addProject()" color="secondary" flat icon>
+      <v-btn v-on:click="addProject()" color="primary" flat icon>
         <v-icon dark>add_circle_outline</v-icon>
       </v-btn>
       <v-flex xs4>
@@ -14,13 +14,13 @@
                    :key="project.key">
         <v-list-tile-content>
           <v-layout depressed small row align-center justify-center>
-            <v-btn :to="{ name: 'project', params: { id: index, name: project }}" flat icon color="blue">
+            <v-btn v-on:click="deleteProject(index)" flat icon color="error">
+              <v-icon>delete</v-icon>
+            </v-btn>
+            <v-btn :to="{ name: 'project', params: { id: index, name: project }}" flat icon color="secondary">
               <v-icon>chevron_right</v-icon>
             </v-btn>
             {{project}}
-            <v-btn v-on:click="deleteProject(index)" flat icon color="deep-orange">
-              <v-icon>delete</v-icon>
-            </v-btn>
           </v-layout>
         </v-list-tile-content>
       </v-list-tile>

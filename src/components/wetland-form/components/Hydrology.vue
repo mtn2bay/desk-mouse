@@ -79,7 +79,7 @@
       </v-flex>
     </v-layout>
 
-    <v-flex xs2 class="mt-5">
+    <v-flex xs4 class="mt-5">
       <v-checkbox
         label="Wetland Hydrology"
         v-model="form.wetlandHydrology"
