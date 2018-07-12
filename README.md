@@ -1,7 +1,3 @@
-# desk-mouse
-
-> A data collection application
-
 ## Build Setup
 
 ``` bash
